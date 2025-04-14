@@ -1,3 +1,1 @@
-void Acionamento_MotorX() {
-    // instruções aqui
-}
+void Acionamento_MotorX() 

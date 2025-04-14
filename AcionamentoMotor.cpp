@@ -1,9 +1,40 @@
 #include "mbed.h"
+#define velo 0.01 // tempo entre os passos
 
-BusOut MotorPassoX(D3, D4, D5, D6);
-BusOut MotorPassoY(D7, D8, D9, D10);
-BusOut MotorPassoZ(D11, D12, D13, D14);
+//BusOut MP_X(D3, D4, D5, D6); // Motor de Passo do Eixo X
+//BusOut MP_Y(D7, D8, D9, D10); // Motor de Passo do Eixo Y
+//BusOut MP_Z(D11, D12, D13, D14); // Motor de Passo do Eixo Z
 
-void Acionamento_MotorX() {
-    MotorPassoZ = 1; 
+BusOut MotorX(D3, D4, D5, D6); //4 pinos conectados ao driver do motor
+DigitalIn BotaoXP(PC_0);       //Botão X Positivo (Direita)
+DigitalIn BotaoXN(PC_1);       //Botão X Negativo (Esquerda)
+
+
+void AcionamentoMotorX() {
+    int AcionamentoFase[4] = {0x1, 0x2, 0x4, 0x8}; //Sequência de acionamento para motor unipolar (4 fases)
+    int estado = 0; //Estado definido como 0 inicialmente
+
+    // Lê os dois botões e transforma-o em um número, identificando o estado
+    if (BotaoXP == 0) estado = 1;  //Pressionado (ativo baixo)
+    if (BotaoXN == 0) estado = 2;
+
+    switch (estado) {
+        case 1: //BotaoXP pressionado -> incremento positivo
+            for (int i = 0; i < 4; i++) {
+                MotorX = AcionamentoFase[i];
+                wait(velo);
+            }
+            break;
+
+        case 2: //BotaoXN pressionado -> incremento negativo
+            for (int i = 3; i >= 0; i--) {
+                MotorX = AcionamentoFase[i];
+                wait(velo);
+            }
+            break;
+
+        default: //Nenhum botão pressionado
+            MotorX = 0;
+            break;
+    }
 }
