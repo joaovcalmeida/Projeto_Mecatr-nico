@@ -5,6 +5,5 @@ BusOut MotorPassoY(D7, D8, D9, D10);
 BusOut MotorPassoZ(D11, D12, D13, D14);
 
 void Acionamento_MotorX() {
-    MotorPassoZ = 1
-    
+    MotorPassoZ = 1; 
 }
