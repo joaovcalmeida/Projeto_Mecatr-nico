@@ -20,15 +20,10 @@ DigitalIn BotaoZN(A4);       //Botão Z Positivo (Sobe)
 
 
 
-
-void AcionamentoMotorX() {
+ int estado = 0; //Estado definido como 0 inicialmente
+void AcionamentoMotorX(int estado) {
     int AcionamentoFase[4] = {0x01, 0x02, 0x04, 0x08}; //Sequência de acionamento para motor unipolar (4 fases)
-    int estado = 0; //Estado definido como 0 inicialmente
-
-    // Lê os dois botões e transforma-o em um número, identificando o estado
-    if (BotaoXP == 0) estado = 1;  //Pressionado (ativo baixo)
-    if (BotaoXN == 0) estado = 2;
-
+   
     switch (estado) {
         case 1: //BotaoXP pressionado -> incremento positivo
             for (int i = 0; i < 4; i++) {
@@ -51,15 +46,8 @@ void AcionamentoMotorX() {
 }
 
 
-
-
-void AcionamentoMotorY() {
+void AcionamentoMotorY(int estado) {
     int AcionamentoFase[4] = {0x01, 0x02, 0x04, 0x08}; //Sequência de acionamento para motor unipolar (4 fases)
-    int estado = 0; //Estado definido como 0 inicialmente
-
-    // Lê os dois botões e transforma-o em um número, identificando o estado
-    if (BotaoYP == 0) estado = 1;  //Pressionado (ativo baixo)
-    if (BotaoYN == 0) estado = 2;
 
     switch (estado) {
         case 1: //BotaoYP pressionado -> incremento positivo
@@ -83,14 +71,9 @@ void AcionamentoMotorY() {
 }
 
 
-void AcionamentoMotorZ() {
+void AcionamentoMotorZ(int estado) {
     int AcionamentoFase[4] = {0x01, 0x02, 0x04, 0x08}; //Sequência de acionamento para motor unipolar (4 fases)
-    int estado = 0; //Estado definido como 0 inicialmente
-
-    // Lê os dois botões e transforma-o em um número, identificando o estado
-    if (BotaoZP == 0) estado = 1;  //Pressionado (ativo baixo)
-    if (BotaoZN == 0) estado = 2;
-
+    
     switch (estado) {
         case 1: //BotaoYP pressionado -> incremento positivo
             for (int i = 0; i < 4; i++) {
@@ -116,13 +99,18 @@ void AcionamentoMotorZ() {
 
 
 
-
-
-
-
 int main(){
     while(1){
-    AcionamentoMotorX();
-    AcionamentoMotorY();
+            if (BotaoXP == 0) estado = 1;  //Pressionado (ativo baixo)
+            if (BotaoXN == 0) estado = 2;
+            if (BotaoYP == 0) estado = 1;  //Pressionado (ativo baixo)
+            if (BotaoYN == 0) estado = 2;
+            if (BotaoZP == 0) estado = 1;  //Pressionado (ativo baixo)
+            if (BotaoZN == 0) estado = 2;
+
+            AcionamentoMotorX(estado);
+            AcionamentoMotorY(estado);
+            AcionamentoMotorZ(estado);
+
 }
 }
