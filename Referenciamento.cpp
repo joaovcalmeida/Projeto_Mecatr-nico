@@ -17,44 +17,36 @@ extern int direcao_Z; // 0 = desce, 1 = sobe
 
 int estado_Z = 0; // 0 = operação normal, 1 = ajuste mínimo, 2 = ajuste máximo
 
-void ReferenciarZ_RotinaSegura() {
+void ReferenciarZ() {
     switch (estado_Z) {
         case 0: // Operação normal
-            // Sensor mínimo atingido enquanto descendo
-            if (FdC_Z_Min == 0 && direcao_Z == 0) {
+            if (FdC_Z_Min == 0) {
                 MotorZ = 0;
                 wait(1);
-                direcao_Z = 1;
-                estado_Z = 1;
+                estado_Z = 1; // Entrar em ajuste para cima
             }
-            // Sensor máximo atingido enquanto subindo
-            else if (FdC_Z_Max == 0 && direcao_Z == 1) {
+            else if (FdC_Z_Max == 0 ) {
                 MotorZ = 0;
                 wait(1);
-                direcao_Z = 0;
-                estado_Z = 2;
+                estado_Z = 2; // Entrar em ajuste para baixo
             } else {
-                AcionamentoMotorZ(); // Move normalmente
+                AcionamentoMotorZ(); // Continua operação normal
             }
             break;
 
-        case 1: // Ajuste fino para cima (liberar sensor mínimo)
-            if (FdC_Z_Min == 1) { // Já liberou
-                MotorZ = 0;
-                estado_Z = 0;
-            } else {
-                AcionamentoMotorZ(1); // Sobe lentamente
-                wait(0.03);
+        case 1: // Ajuste para cima (liberar sensor mínimo)
+            AcionamentoMotorZ(1); // sobe devagar
+            wait(0.03);
+            if (FdC_Z_Min == 1) {
+                estado_Z = 0; // Volta para modo normal
             }
             break;
 
-        case 2: // Ajuste fino para baixo (liberar sensor máximo)
-            if (FdC_Z_Max == 1) { // Já liberou
-                MotorZ = 0;
-                estado_Z = 0;
-            } else {
-                AcionamentoMotorZ(2); // Desce lentamente
-                wait(0.03);
+        case 2: //Ajust e fino para baixo (liberar sensor máximo)
+            AcionamentoMotorZ(2); // desce devagar
+            wait(0.03);
+            if (FdC_Z_Max == 1) {
+                estado_Z = 0; // Volta para modo normal
             }
             break;
     }
