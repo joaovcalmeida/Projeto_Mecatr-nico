@@ -100,16 +100,12 @@ int main(){
     
 int estado = 0; //Estado definido como 0 inicialmente
     while(1){
-            if (BotaoXP == 0) estado = 1;  //Pressionado (ativo baixo)
-            if (BotaoXN == 0) estado = 2;
-            if (BotaoYP == 0) estado = 1;  //Pressionado (ativo baixo)
-            if (BotaoYN == 0) estado = 2;
-            if (BotaoZP == 0) estado = 1;  //Pressionado (ativo baixo)
-            if (BotaoZN == 0) estado = 2;
-
-            AcionamentoMotorX(estado);
-            AcionamentoMotorY(estado);
-            AcionamentoMotorZ(estado);
+            if (BotaoXP == 0) AcionamentoMotorX(1);  //Pressionado (ativo baixo)
+            if (BotaoXN == 0) AcionamentoMotorX(2);
+            if (BotaoYP == 0) AcionamentoMotorX(1);  //Pressionado (ativo baixo)
+            if (BotaoYN == 0) AcionamentoMotorX(2);
+            if (BotaoZP == 0) AcionamentoMotorX(1);  //Pressionado (ativo baixo)
+            if (BotaoZN == 0) AcionamentoMotorX(2);
 
 }
 }
