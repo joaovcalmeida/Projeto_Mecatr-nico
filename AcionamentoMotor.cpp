@@ -18,9 +18,9 @@ DigitalIn BotaoYN(A2);       //Botão Y Negativo (Desce)
 DigitalIn BotaoZP(A3);       //Botão Z Positivo (Sobe)
 DigitalIn BotaoZN(A4);       //Botão Z Positivo (Sobe)
 
+//Início
 
-
- int estado = 0; //Estado definido como 0 inicialmente
+int estado = 0; //Estado definido como 0 inicialmente
 void AcionamentoMotorX(int estado) {
     int AcionamentoFase[4] = {0x01, 0x02, 0x04, 0x08}; //Sequência de acionamento para motor unipolar (4 fases)
    
