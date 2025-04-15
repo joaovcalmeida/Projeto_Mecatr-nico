@@ -9,7 +9,7 @@ BusOut MotorX(D2, D3, D4, D5); //4 pinos conectados ao driver do Motor Eixo X
 BusOut MotorY(D6, D7, D8, D9); //4 pinos conectados ao driver do Motor Eixo Y
 BusOut MotorZ(D10, D11, D12, D13); //4 pinos conectados ao driver do Motor Eixo Z
 
-
+//HHHHHH
 
 DigitalIn BotaoXP(A0);       //Botão X Positivo (Direita)
 DigitalIn BotaoXN(PC_13);    //Botão X Negativo (Esquerda)
