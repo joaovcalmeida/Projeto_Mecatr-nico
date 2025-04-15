@@ -3,7 +3,8 @@
 const int tamanho_array = 100;
 int num_posicoes_salvas = 0;
 
-void SalvaPosicaoCOLETA() {
+//Início da função que salva a posição atual como posição de coleta
+void SalvarPosicaoCOLETA() {
     //armazenando as posicoes atuais dos eixos X,Y e Z
     posicao_coletaX = posicao_X;
     posicao_coletaY = posicao_Y;
@@ -30,8 +31,8 @@ void SalvaPosicaoCOLETA() {
     wait_ms(5000);
     lcd.cls();
 }
-
-void salvaposicaoLIBERAÇÃO(){
+//inicio da funcao para salvar posicoes de liberacao
+void salvarposicaoLIBERAÇÃO(){
     //verifica se há espaços no array para salvar posições
     if (num_posicoes_salvas< tamanho_array){
         //armazena as posicoes atuais nos vetores correspondentes
@@ -76,4 +77,66 @@ void salvaposicaoLIBERAÇÃO(){
         wait_ms(5000);
         lcd.cls();
     }
+}
+// Início da função para zerar o eixo Z (por ex ao voltar para a posição segura)
+void MovendoEixoZparaZero(){
+    //enquanto posicao_Z for maior que zero, continua movendo o eixo z para baixo
+    while (posicao_Z>0) moverEixoZ(0);
+//desliga o motor do eixo Z apos alcancar o zero
+    MotorZ =1;
+    wait_ms(200);
+}
+
+//funcao que move os tres eixos para as coordenadas alvo fornecidas
+void MoverParaPosicaoFornecida(int alvo_X, int alvo_Y, int alvo_Z){
+
+    lcd.cls();
+    lcd.locate(0, 0);
+    lcd.printf("Movendo para:");
+    lcd.locate(0, 1);
+    lcd.printf("X:%d Y:%d Z:%d", alvo_X, alvo_Y, alvo_Z);
+
+    // Movimento do eixo X
+    lcd.locate(0, 2);
+    lcd.printf("Movendo eixo X...");
+
+    while (abs(posicao_X - alvo_X) > 0) {
+        if (posicao_X < alvo_X) {
+            moverEixoX(1); //anda para frente
+        } else {
+            moverEixoX(0);//anda para tras
+        }
+    }
+    MotorX = 1;
+    wait_ms(200);
+
+    // Movimento do eixo Y
+    lcd.locate(0, 2);
+    lcd.printf("Movendo eixo Y...");
+    while (abs(posicao_Y - alvo_Y) > 0) {
+        if (posicao_Y < alvo_Y) {
+            moverEixoY(0);//anda para frente
+        } else {
+            moverEixoY(1);//anda para tras
+        }
+    }
+    MotorY = 1;
+    wait_ms(200);
+
+    // Movimento do eixo Z
+    lcd.locate(0, 2);
+    lcd.printf("Movendo eixo Z...");
+    while (posicao_Z != alvo_Z) {
+        if (posicao_Z < alvo_Z) {
+            moverEixoZ(1);//anda para frente
+        } else {
+            moverEixoZ(0);//anda para tras
+        }
+    }
+    MotorZ = 1;
+    wait_ms(200);
+
+    lcd.locate(0, 2);
+    lcd.printf("Posicionamento finalizado!");
+    wait_ms(1000);
 }
