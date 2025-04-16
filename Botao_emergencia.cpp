@@ -14,6 +14,7 @@ extern BusOut MotorX;
 extern BusOut MotorY;
 extern BusOut MotorZ;
 
+bool emergencia_ativada = false;
 // --- Função para alterar estado de emergência ---
 void setEmergencia(bool estado) {
     emergencia_ativada = estado;
