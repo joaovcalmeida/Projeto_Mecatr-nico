@@ -51,7 +51,7 @@ void SinalizaEmergencia(){
         lcd.cls()
         lcd.locate(0,0);
         lcd.printf("Resetando");
-        wait_ms(1000)
+        wait_ms(1000);
         NVIC_SystemReset();
 
     }
