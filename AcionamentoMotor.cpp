@@ -94,8 +94,6 @@ void AcionamentoMotorZ(int estado) {
 
 
 
-
-
 int main(){
     
 int estado = 0; //Estado definido como 0 inicialmente

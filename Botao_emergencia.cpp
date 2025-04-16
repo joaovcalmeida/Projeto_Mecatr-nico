@@ -1,7 +1,14 @@
 #include "mbed.h"
-DigitalOut led_emergencia_vermelho(PA_15)
-DigitalOut buzzer_emergencia(PC_11)
+#include "AcionamentoMotor.h" // Contém AcionamentoMotorZ()
+
+DigitalOut led_emergencia_vermelho(PA_15);
+DigitalOut buzzer_emergencia(PC_11);
 InterruptIn BotaoEmergencia(PC_10);
+
+extern BusOut MotorX;
+extern BusOut MotorY;
+extern BusOut MotorZ;
+
 
 void SinalizaEmergencia(){
     if (BotaoEmergencia ==0){
@@ -20,7 +27,7 @@ void SinalizaEmergencia(){
         MotorZ = 1;
 
         // Esperando o botao ser solto para poder resetar o sistema
-        while (BotaoEmergencia==0) wait_ms(1000)
+        while (BotaoEmergencia==0) wait_ms(1000);
 
         // Se o botao nao for solto, surge mensagem de reset
         lcd.cls()

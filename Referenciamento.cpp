@@ -13,7 +13,6 @@ DigitalIn FdC_Y_Max(PB_14);
 DigitalIn FdC_Y_Min(PB_15);
 
 extern BusOut MotorZ;
-extern int direcao_Z; // 0 = desce, 1 = sobe
 
 int estado_Z = 0; // 0 = operação normal, 1 = ajuste mínimo, 2 = ajuste máximo
 
