@@ -4,8 +4,27 @@
 #include "cmsis.h"
 
 const int tamanho_array = 100;
+
+// Vetores de posições de liberação
+int posicoes_X[tamanho_array];
+int posicoes_Y[tamanho_array];
+int posicoes_Z[tamanho_array];
+
 int num_posicoes_salvas = 0;
-//oi
+
+// Flag indicando se a posição de coleta foi salva
+bool posicao_de_coleta_salva = false;
+
+// Posições de coleta
+int posicao_coletaX = 0;
+int posicao_coletaY = 0;
+int posicao_coletaZ = 0;
+
+// Posição atual (deve ser atualizada conforme seu projeto)
+int posicao_X = 0;
+int posicao_Y = 0;
+int posicao_Z = 0;
+
 //Início da função que salva a posição atual como posição de coleta
 void SalvarPosicaoCOLETA() {
     //armazenando as posicoes atuais dos eixos X,Y e Z
