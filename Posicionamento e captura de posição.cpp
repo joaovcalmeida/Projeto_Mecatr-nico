@@ -2,7 +2,7 @@
 
 const int tamanho_array = 100;
 int num_posicoes_salvas = 0;
-
+//oi
 //Início da função que salva a posição atual como posição de coleta
 void SalvarPosicaoCOLETA() {
     //armazenando as posicoes atuais dos eixos X,Y e Z
