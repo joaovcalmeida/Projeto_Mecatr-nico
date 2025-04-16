@@ -40,7 +40,7 @@ void SinalizaEmergencia(){
         while (BotaoEmergencia==0) wait_ms(1000);
 
         // Se o botao nao for solto, surge mensagem de reset
-        lcd.cls()
+        lcd.cls();
         lcd.locate(0,0);
         lcd.printf("Solte o botao para resetar");
         while (BotaoEmergencia == 1) wait_ms(1000);
@@ -49,7 +49,7 @@ void SinalizaEmergencia(){
         //Começa a resetar
         led_emergencia_vermelho = 0;
         buzzer_emergencia = 0;
-        lcd.cls()
+        lcd.cls();
         lcd.locate(0,0);
         lcd.printf("Resetando");
         wait_ms(1000);
