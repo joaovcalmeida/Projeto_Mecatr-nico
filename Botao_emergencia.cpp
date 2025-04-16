@@ -1,5 +1,10 @@
 #include "mbed.h"
 #include "AcionamentoMotor.h" // Contém AcionamentoMotorZ()
+#include "TextLCD.h"
+#include "cmsis.h"
+// Exemplo de pinos: rs, e, d4, d5, d6, d7
+TextLCD lcd(D14, D15, D4, D5, D6, D7);
+
 
 DigitalOut led_emergencia_vermelho(PA_15);
 DigitalOut buzzer_emergencia(PC_11);
@@ -9,6 +14,11 @@ extern BusOut MotorX;
 extern BusOut MotorY;
 extern BusOut MotorZ;
 
+bool emergencia_ativada = false;
+// --- Função para alterar estado de emergência ---
+void setEmergencia(bool estado) {
+    emergencia_ativada = estado;
+}
 
 void SinalizaEmergencia(){
     if (BotaoEmergencia ==0){
@@ -42,7 +52,7 @@ void SinalizaEmergencia(){
         lcd.cls()
         lcd.locate(0,0);
         lcd.printf("Resetando");
-        wait_ms(1000)
+        wait_ms(1000);
         NVIC_SystemReset();
 
     }

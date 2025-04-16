@@ -1,3 +1,44 @@
+#include "mbed.h"
+#include "AcionamentoMotor.h" // Contém AcionamentoMotorZ()
+#include "TextLCD.h"
+#include "cmsis.h"
+
+extern BusOut MotorX;
+extern BusOut MotorY;
+extern BusOut MotorZ;
+
+
+// Exemplo de pinos: rs, e, d4, d5, d6, d7
+TextLCD lcd(D14, D15, D4, D5, D6, D7);
+
+
+// Flags de controle
+bool posicao_coleta_salva = false;
+int num_posicoes_salvas = 0;
+
+// Posição de coleta salva pelo usuário
+int posicao_coletaX = 0;
+int posicao_coletaY = 0;
+int posicao_coletaZ = 0;
+
+// Posições de liberação definidas pelo usuário (máximo de 10)
+const int MAX_POSICOES = 10;
+int posicoes_X[MAX_POSICOES];
+int posicoes_Y[MAX_POSICOES];
+int posicoes_Z[MAX_POSICOES];
+
+// Posição atual (deve ser atualizada conforme movimentos reais)
+int posicao_Z = 0;
+
+// ------------------ FUNÇÕES AUXILIARES NECESSÁRIAS (EXTERNAS) ------------------
+
+// Move o eixo Z fisicamente e atualiza a variável posicao_Z
+void moverEixoZ(int sentido); // 0 = descer, 1 = subir
+
+// Move para uma posição 3D definida
+void moverParaPosicao(int x, int y, int z);
+
+
 DigitalOut atuadorPipeta(PA_5);  // Pino conectado ao atuador do êmbolo
 
 void pipetarVolumeTotal(int volume_total_mL) {
