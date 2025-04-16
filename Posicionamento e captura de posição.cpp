@@ -1,4 +1,7 @@
 #include "mbed.h"
+#include "AcionamentoMotor.h" // Contém AcionamentoMotorZ()
+#include "TextLCD.h"
+#include "cmsis.h"
 
 const int tamanho_array = 100;
 int num_posicoes_salvas = 0;
