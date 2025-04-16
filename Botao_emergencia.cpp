@@ -1,5 +1,6 @@
 #include "mbed.h"
 #include "AcionamentoMotor.h" // Contém AcionamentoMotorZ()
+#include "TextLCD.h"
 
 DigitalOut led_emergencia_vermelho(PA_15);
 DigitalOut buzzer_emergencia(PC_11);
@@ -9,6 +10,10 @@ extern BusOut MotorX;
 extern BusOut MotorY;
 extern BusOut MotorZ;
 
+// --- Função para alterar estado de emergência ---
+void setEmergencia(bool estado) {
+    emergencia_ativada = estado;
+}
 
 void SinalizaEmergencia(){
     if (BotaoEmergencia ==0){
