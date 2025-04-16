@@ -5,17 +5,16 @@
 //BusOut MP_Y(D7, D8, D9, D10); // Motor de Passo do Eixo Y
 //BusOut MP_Z(D11, D12, D13, D14); // Motor de Passo do Eixo Z
 
-BusOut MotorX(D2, D3, D4, D5); //4 pinos conectados ao driver do Motor Eixo X
+BusOut MotorX(D10, D11, D12, D13); //4 pinos conectados ao driver do Motor Eixo X
 BusOut MotorY(D6, D7, D8, D9); //4 pinos conectados ao driver do Motor Eixo Y
-BusOut MotorZ(D10, D11, D12, D13); //4 pinos conectados ao driver do Motor Eixo Z
+BusOut MotorZ(D2, D3, D4, D5); //4 pinos conectados ao driver do Motor Eixo Z
 
-
-DigitalIn BotaoXP(A0);       //Botão X Positivo (Direita)
-DigitalIn BotaoXN(PC_13);    //Botão X Negativo (Esquerda)
+DigitalIn BotaoXP(A3);       //Botão X Positivo (Direita)
+DigitalIn BotaoXN(A4);    //Botão X Negativo (Esquerda)
 DigitalIn BotaoYP(A1);       //Botão Y Positivo (Sobe)
 DigitalIn BotaoYN(A2);       //Botão Y Negativo (Desce)
-DigitalIn BotaoZP(A3);       //Botão Z Positivo (Sobe)
-DigitalIn BotaoZN(A4);       //Botão Z Positivo (Sobe)
+DigitalIn BotaoZP(A0);       //Botão Z Positivo (Sobe) A0
+DigitalIn BotaoZN(PC_13);       //Botão Z Positivo (Sobe) PC_13
 
 
 void AcionamentoMotorX(int estado) {
@@ -100,10 +99,10 @@ int estado = 0; //Estado definido como 0 inicialmente
     while(1){
             if (BotaoXP == 0) AcionamentoMotorX(1);  //Pressionado (ativo baixo)
             if (BotaoXN == 0) AcionamentoMotorX(2);
-            if (BotaoYP == 0) AcionamentoMotorX(1);  //Pressionado (ativo baixo)
-            if (BotaoYN == 0) AcionamentoMotorX(2);
-            if (BotaoZP == 0) AcionamentoMotorX(1);  //Pressionado (ativo baixo)
-            if (BotaoZN == 0) AcionamentoMotorX(2);
+            if (BotaoYP == 0) AcionamentoMotorY(1);  //Pressionado (ativo baixo)
+            if (BotaoYN == 0) AcionamentoMotorY(2);
+            if (BotaoZP == 0) AcionamentoMotorZ(1);  //Pressionado (ativo baixo)
+            if (BotaoZN == 0) AcionamentoMotorZ(2);
 
 }
 }

@@ -5,12 +5,12 @@ void AcionamentoMotorZ();
 #include "mbed.h"
 #include "AcionamentoMotor.h" // Contém AcionamentoMotorZ()
 
-DigitalIn FdC_Z_Min(PA_12);
-DigitalIn FdC_Z_Max(PA_11);
-DigitalIn FdC_X_Max(PB_2);
-DigitalIn FdC_X_Min(PB_1);
-DigitalIn FdC_Y_Max(PB_14);
-DigitalIn FdC_Y_Min(PB_15);
+DigitalIn FdC_Z_Min(D10);
+DigitalIn FdC_Z_Max(D11);
+// DigitalIn FdC_X_Max(PB_2);
+// DigitalIn FdC_X_Min(PB_1);
+// DigitalIn FdC_Y_Max(PB_14);
+// DigitalIn FdC_Y_Min(PB_15);
 
 
 extern BusOut MotorX;
@@ -25,12 +25,10 @@ void ReferenciarZ() {
         case 0: // Operação normal
             if (FdC_Z_Min == 0) {
                 MotorZ = 0;
-                wait(1);
                 estado_Z = 1; // Entrar em ajuste para cima
             }
             else if (FdC_Z_Max == 0 ) {
                 MotorZ = 0;
-                wait(1);
                 estado_Z = 2; // Entrar em ajuste para baixo
             } else {
                 AcionamentoMotorZ(); // Continua operação normal
@@ -54,3 +52,5 @@ void ReferenciarZ() {
             break;
     }
 }
+
+
