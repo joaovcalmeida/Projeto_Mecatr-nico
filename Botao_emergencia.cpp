@@ -5,7 +5,7 @@
 // Exemplo de pinos: rs, e, d4, d5, d6, d7
 TextLCD lcd(D14, D15, D4, D5, D6, D7);
 
-
+//EMERGENCIA
 DigitalOut led_emergencia_vermelho(PA_15);
 DigitalOut buzzer_emergencia(PC_11);
 InterruptIn BotaoEmergencia(PC_10);
