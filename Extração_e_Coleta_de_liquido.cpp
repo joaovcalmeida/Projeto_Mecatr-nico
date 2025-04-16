@@ -80,7 +80,7 @@ void pipetarVolumeTotal(int volume_total_mL) {
         atuadorPipeta = 0;
 
         // Sobe até posição original
-        while (posicao_Z < posicao_coleta_Z)
+        while (posicao_Z < posicao_coletaZ)
             moverEixoZ(1);
         MotorZ = 1;
         wait_ms(300);
