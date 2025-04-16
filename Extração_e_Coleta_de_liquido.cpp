@@ -2,6 +2,12 @@
 #include "AcionamentoMotor.h" // Contém AcionamentoMotorZ()
 #include "TextLCD.h"
 #include "cmsis.h"
+
+extern BusOut MotorX;
+extern BusOut MotorY;
+extern BusOut MotorZ;
+
+
 // Exemplo de pinos: rs, e, d4, d5, d6, d7
 TextLCD lcd(D14, D15, D4, D5, D6, D7);
 
